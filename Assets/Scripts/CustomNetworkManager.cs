@@ -4,8 +4,8 @@ using UnityEngine.Networking;
 public class CustomNetworkManager : NetworkManager {
 
 	public static string direction = "center";
-	public static bool stereo = false;
-	public static float interpupillaryDistance = 0.06985f;
+	public static bool stereo = true;
+	public static float interpupillaryDistance = 62 / 1000f;//0.06985f;
 
     private GameObject instance;
 
