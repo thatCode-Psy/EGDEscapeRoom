@@ -7,6 +7,7 @@ public class OSCEventListener : MonoBehaviour {
 	
 	//PointerControl pointerRoot;
 	public Transform projectionRoot;
+	public Transform pointerRoot;
 
 	private static OSCEventListener osc;
 	public static OSCEventListener OSC
@@ -59,8 +60,11 @@ public class OSCEventListener : MonoBehaviour {
 				// rotate X = pitch
 				// rotate Y = heading
 				// rotate Z = roll
-				//if (pointerRoot)
-				//	pointerRoot.UpdatePointer (float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]), float.Parse(words[15]), float.Parse(words[14]), float.Parse(words[16]));
+				if (pointerRoot)
+				{
+					pointerRoot.localPosition = new Vector3 (float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
+					//pointerRoot.localRotation = new Vector3 (float.Parse(words[15]), float.Parse(words[14]), float.Parse(words[16]));
+				}
 			}
 			
 			
