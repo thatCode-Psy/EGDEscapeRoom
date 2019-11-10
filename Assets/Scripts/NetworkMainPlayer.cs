@@ -11,14 +11,14 @@ public class NetworkMainPlayer : NetworkBehaviour {
             this.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
 
         // Enable camera at given direction
-		GameObject parent = GameObject.FindWithTag("camera_" + CustomNetworkManager.direction);
+		/*GameObject parent = GameObject.FindWithTag("camera_" + CustomNetworkManager.direction);
 		Camera[] cameras = parent.transform.GetComponentsInChildren<Camera>();
 
 		for (int i = 0; i < cameras.Length; i++) {
 			cameras[i].enabled = true;
 			if (i+1 < Display.displays.Length)
 				Display.displays[i+1].Activate();
-		}
+		}*/
     }
 
 }
