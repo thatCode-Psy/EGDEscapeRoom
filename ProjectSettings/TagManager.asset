@@ -9,6 +9,7 @@ TagManager:
   - camera_left
   - Hat1Tag
   - EGDController
+  - TestWall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - TestWall
   - 
   - 
   - 

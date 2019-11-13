@@ -68,7 +68,7 @@ public class OSCEventListener : MonoBehaviour
                 if (pointerRoot)
                 {
                     pointerRoot.localPosition = new Vector3(float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
-                    pointerRoot.localEulerAngles = new Vector3(float.Parse(words[15]), float.Parse(words[14]), float.Parse(words[16]));
+                    pointerRoot.localEulerAngles = new Vector3(-float.Parse(words[15]), -float.Parse(words[14]), float.Parse(words[16]));
 
                     //	pointerRoot.UpdatePointer (float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]), float.Parse(words[15]), float.Parse(words[14]), float.Parse(words[16]));
                 }
