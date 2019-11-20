@@ -10,6 +10,9 @@ TagManager:
   - Hat1Tag
   - EGDController
   - TestWall
+  - Hat2Tag
+  - Hat3Tag
+  - Hat4Tag
   layers:
   - Default
   - TransparentFX
