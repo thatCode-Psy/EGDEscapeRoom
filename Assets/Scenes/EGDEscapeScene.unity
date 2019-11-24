@@ -1843,14 +1843,12 @@ MonoBehaviour:
     - {fileID: 929223949}
     background: {fileID: 2800000, guid: 9f2bf8142197a5d45b9b659753836a2b, type: 3}
     final: 0
-  - activateConditions:
-    - {fileID: 410071885}
+  - activateConditions: []
     background: {fileID: 2800000, guid: b45b545b5411e3e479e90ab48098c3ec, type: 3}
-    final: 0
-  - activateConditions:
-    - {fileID: 410071885}
+    final: 1
+  - activateConditions: []
     background: {fileID: 2800000, guid: b45b545b5411e3e479e90ab48098c3ec, type: 3}
-    final: 0
+    final: 1
   phaseIndex: 0
 --- !u!4 &2082676316
 Transform:
@@ -2223,7 +2221,7 @@ MonoBehaviour:
   - {fileID: 1647456195}
   - {fileID: 1824316179}
   - {fileID: 1277147700}
-  goalTargets: 0
+  goalTargets: 
 --- !u!1001 &420414270722897946
 PrefabInstance:
   m_ObjectHideFlags: 0
