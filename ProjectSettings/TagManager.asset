@@ -13,6 +13,9 @@ TagManager:
   - Hat2Tag
   - Hat3Tag
   - Hat4Tag
+  - PhaseManager
+  - Wand
+  - Dot
   layers:
   - Default
   - TransparentFX

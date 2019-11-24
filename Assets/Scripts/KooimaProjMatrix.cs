@@ -23,7 +23,7 @@ public class KooimaProjMatrix : MonoBehaviour {
 
 		//get new tracker position (as updated over the network)
 		//getting it off the "ViewUpdate" component on the projection root (parent), along with IPD if needed
-		trackerPosition = GameObject.FindObjectOfType<OSCEventListener>().projectionRoot;
+		trackerPosition = GameObject.FindObjectOfType<OSCEventListener>().hat1Root;
 		stereo = CustomNetworkManager.stereo;
 		interpupillaryDistance = CustomNetworkManager.interpupillaryDistance;
 

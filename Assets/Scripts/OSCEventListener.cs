@@ -7,10 +7,11 @@ public class OSCEventListener : MonoBehaviour
 {
 
 
-    public Transform projectionRoot;
-    public Transform pointerRoot;
-    public Transform wand2Root;
-    public Transform pirateHatRoot;
+    public Transform hat1Root;
+    public Transform hat2Root;
+    public Transform hat3Root;
+    public Transform hat4Root;
+    public Transform wandRoot;
     private static OSCEventListener osc;
     public static OSCEventListener OSC
     {
@@ -56,30 +57,47 @@ public class OSCEventListener : MonoBehaviour
 
 
                 //convert Vicon coordinates to Unity coordinates
-                projectionRoot.localPosition = new Vector3(float.Parse(words[5]), float.Parse(words[7]), float.Parse(words[6]));
+                if (hat1Root)
+                {
+                    hat1Root.localPosition = new Vector3(float.Parse(words[5]), float.Parse(words[7]), float.Parse(words[6]));
+                }
+                if (hat2Root)
+                {
+                    hat2Root.localPosition = new Vector3(float.Parse(words[8]), float.Parse(words[10]), float.Parse(words[9]));
+                }
+                if(hat3Root)
+                {
+                    hat3Root.localPosition = new Vector3(float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
+                }
+                if(hat4Root)
+                {
+                    hat4Root.localPosition = new Vector3(float.Parse(words[14]), float.Parse(words[16]), float.Parse(words[15]));
+                }
+                if(wandRoot)
+                {
+                    wandRoot.localPosition = new Vector3(float.Parse(words[17]), float.Parse(words[19]), float.Parse(words[18]));
+                    wandRoot.localEulerAngles = new Vector3(-float.Parse(words[21]), -float.Parse(words[20]), float.Parse(words[22]));
+                }
 
-                Vector3 pos = projectionRoot.localPosition;
+
+                // hat2Root.localEulerAngles = new Vector3(-float.Parse(words[15]), -float.Parse(words[14]), float.Parse(words[16]));
+                Vector3 pos = hat1Root.localPosition;
                 pos *= 3.28084f;
                 GameObject.FindObjectOfType<Text>().text = pos.ToString();
                 //14, 15, 16 = H, P, R
                 // rotate X = pitch
                 // rotate Y = heading
                 // rotate Z = roll
-                if (pointerRoot)
+                
+                /*
+                if (hat3Root)
                 {
-                    pointerRoot.localPosition = new Vector3(float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
-                    pointerRoot.localEulerAngles = new Vector3(-float.Parse(words[15]), -float.Parse(words[14]), float.Parse(words[16]));
-
-                    //	pointerRoot.UpdatePointer (float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]), float.Parse(words[15]), float.Parse(words[14]), float.Parse(words[16]));
+                    hat3Root.localPosition = new Vector3(float.Parse(words[17]), float.Parse(words[19]), float.Parse(words[18]));
                 }
-                if (wand2Root)
+                if (hat4Root)
                 {
-                    wand2Root.localPosition = new Vector3(float.Parse(words[17]), float.Parse(words[19]), float.Parse(words[18]));
-                }
-                if (pirateHatRoot)
-                {
-                    pirateHatRoot.localPosition = new Vector3(float.Parse(words[23]), float.Parse(words[25]), float.Parse(words[24]));
-                }
+                    hat4Root.localPosition = new Vector3(float.Parse(words[23]), float.Parse(words[25]), float.Parse(words[24]));
+                }*/
             }
 
 

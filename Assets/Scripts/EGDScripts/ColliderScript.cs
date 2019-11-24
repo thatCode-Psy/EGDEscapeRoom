@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliderScript : MonoBehaviour
+public class ColliderScript : TriggeringObject
 {
     public string[] triggerTags;
     public bool triggered;
@@ -22,31 +22,33 @@ public class ColliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectWithTag("EGDController") != null && !started)
-        {
-            started = true;
-            for(int i = 0; i < triggerTags.Length; ++i)
+        
+            if (GameObject.FindGameObjectWithTag("EGDController") != null && !started)
             {
-                triggerObjects[i] = GameObject.FindGameObjectWithTag(triggerTags[i]);
-            }
-        }
-        if (started)
-        {
-            Bounds bounds = col.bounds;
-            triggered = false;
-            foreach(GameObject triggerObject in triggerObjects)
-            {
-                if (bounds.Contains(triggerObject.transform.position))
+                started = true;
+                for (int i = 0; i < triggerTags.Length; ++i)
                 {
-                    triggered = true;
-                    break;
+                    triggerObjects[i] = GameObject.FindGameObjectWithTag(triggerTags[i]);
                 }
             }
-        }
+            if (started)
+            {
+                Bounds bounds = col.bounds;
+                triggered = false;
+                foreach (GameObject triggerObject in triggerObjects)
+                {
+                    if (bounds.Contains(triggerObject.transform.position))
+                    {
+                        triggered = true;
+                        break;
+                    }
+                }
+            }
+        
         
     }
 
-    public bool IsTriggered()
+    public override bool IsTriggered()
     {
         return triggered;
     }
