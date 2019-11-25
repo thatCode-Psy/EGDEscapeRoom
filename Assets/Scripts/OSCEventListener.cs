@@ -56,28 +56,63 @@ public class OSCEventListener : MonoBehaviour
                 string[] words = msg.Split(' ');
 
 
-                //convert Vicon coordinates to Unity coordinates
-                if (hat1Root)
+                //Debug.Log(words.Length);
+                if (words.Length == 23) //stupid macs
                 {
-                    hat1Root.localPosition = new Vector3(float.Parse(words[5]), float.Parse(words[7]), float.Parse(words[6]));
+
+                    //convert Vicon coordinates to Unity coordinates
+                    if (hat1Root)
+                    {
+                        hat1Root.localPosition = new Vector3(float.Parse(words[4]), float.Parse(words[6]), float.Parse(words[5]));
+                    }
+                    if (hat2Root)
+                    {
+                        hat2Root.localPosition = new Vector3(float.Parse(words[7]), float.Parse(words[9]), float.Parse(words[8]));
+                    }
+                    if (hat3Root)
+                    {
+                        hat3Root.localPosition = new Vector3(float.Parse(words[10]), float.Parse(words[12]), float.Parse(words[11]));
+                    }
+                    if (hat4Root)
+                    {
+                        hat4Root.localPosition = new Vector3(float.Parse(words[13]), float.Parse(words[15]), float.Parse(words[14]));
+                    }
+                    if (wandRoot)
+                    {
+                        wandRoot.localPosition = new Vector3(float.Parse(words[16]), float.Parse(words[18]), float.Parse(words[17]));
+                        wandRoot.localEulerAngles = new Vector3(-float.Parse(words[20]), -float.Parse(words[19]), float.Parse(words[21]));
+                    }
                 }
-                if (hat2Root)
+                else if (words.Length == 24) //windows (best)
                 {
-                    hat2Root.localPosition = new Vector3(float.Parse(words[8]), float.Parse(words[10]), float.Parse(words[9]));
+                    //convert Vicon coordinates to Unity coordinates
+                    if (hat1Root)
+                    {
+                        hat1Root.localPosition = new Vector3(float.Parse(words[5]), float.Parse(words[7]), float.Parse(words[6]));
+                    }
+                    if (hat2Root)
+                    {
+                        hat2Root.localPosition = new Vector3(float.Parse(words[8]), float.Parse(words[10]), float.Parse(words[9]));
+                    }
+                    if (hat3Root)
+                    {
+                        hat3Root.localPosition = new Vector3(float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
+                    }
+                    if (hat4Root)
+                    {
+                        hat4Root.localPosition = new Vector3(float.Parse(words[14]), float.Parse(words[16]), float.Parse(words[15]));
+                    }
+                    if (wandRoot)
+                    {
+                        wandRoot.localPosition = new Vector3(float.Parse(words[17]), float.Parse(words[19]), float.Parse(words[18]));
+                        wandRoot.localEulerAngles = new Vector3(-float.Parse(words[21]), -float.Parse(words[20]), float.Parse(words[22]));
+                    }
                 }
-                if(hat3Root)
+                else
                 {
-                    hat3Root.localPosition = new Vector3(float.Parse(words[11]), float.Parse(words[13]), float.Parse(words[12]));
+                    Debug.LogError(":(");
                 }
-                if(hat4Root)
-                {
-                    hat4Root.localPosition = new Vector3(float.Parse(words[14]), float.Parse(words[16]), float.Parse(words[15]));
-                }
-                if(wandRoot)
-                {
-                    wandRoot.localPosition = new Vector3(float.Parse(words[17]), float.Parse(words[19]), float.Parse(words[18]));
-                    wandRoot.localEulerAngles = new Vector3(-float.Parse(words[21]), -float.Parse(words[20]), float.Parse(words[22]));
-                }
+ 
 
 
                 // hat2Root.localEulerAngles = new Vector3(-float.Parse(words[15]), -float.Parse(words[14]), float.Parse(words[16]));
