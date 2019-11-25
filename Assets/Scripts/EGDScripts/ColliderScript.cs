@@ -23,7 +23,7 @@ public class ColliderScript : TriggeringObject
     void Update()
     {
         
-            if (GameObject.FindGameObjectWithTag("EGDController") != null && !started)
+            if (GameObject.FindGameObjectWithTag("EGDController") != null && !started && activated)
             {
                 started = true;
                 for (int i = 0; i < triggerTags.Length; ++i)

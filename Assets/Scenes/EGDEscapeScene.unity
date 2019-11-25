@@ -1218,6 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggered: 0
+  previousFrameCheckCount: 10
 --- !u!4 &1458797642
 Transform:
   m_ObjectHideFlags: 0
@@ -1847,7 +1848,7 @@ MonoBehaviour:
     background: {fileID: 2800000, guid: b45b545b5411e3e479e90ab48098c3ec, type: 3}
     final: 1
   - activateConditions: []
-    background: {fileID: 2800000, guid: b45b545b5411e3e479e90ab48098c3ec, type: 3}
+    background: {fileID: 2800000, guid: 93b3df7ac39f8ae419e209a497f8b4ad, type: 3}
     final: 1
   phaseIndex: 0
 --- !u!4 &2082676316
@@ -2179,7 +2180,7 @@ Transform:
   m_GameObject: {fileID: 2132823266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4, y: 1.5, z: 79.49}
-  m_LocalScale: {x: 8.5, y: 8.5, z: 1}
+  m_LocalScale: {x: 8.5, y: 8.5, z: 8.5}
   m_Children:
   - {fileID: 420414270722897947}
   - {fileID: 2107358508}
@@ -2221,7 +2222,7 @@ MonoBehaviour:
   - {fileID: 1647456195}
   - {fileID: 1824316179}
   - {fileID: 1277147700}
-  goalTargets: 
+  goalTargets: 00000000060000000a0000000b000000
 --- !u!1001 &420414270722897946
 PrefabInstance:
   m_ObjectHideFlags: 0

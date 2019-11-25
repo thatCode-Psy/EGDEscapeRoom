@@ -26,6 +26,10 @@ public class WandScript : MonoBehaviour
             {
                 dot.transform.position = hit.point;
             }
+            else
+            {
+                dot.transform.position = Vector3.zero;
+            }
         } 
         
     }

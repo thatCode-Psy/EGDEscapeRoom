@@ -25,19 +25,19 @@ public class PhaseScript : MonoBehaviour
         backwall = GameObject.FindGameObjectWithTag("TestWall");
         backwallRenderer = backwall.GetComponent<Renderer>();
         backwallRenderer.material.mainTexture = phases[0].background;
-        //foreach(GameObject trigger in phases[0].activateConditions)
-        //{
-        //    TriggeringObject script = trigger.GetComponent<TriggeringObject>();
-        //    if (script == null)
-        //    {
-        //        Debug.LogWarning("Using phase manager with GameObject without TriggeringObject");
-        //    }
-        //    else
-        //    {
-        //        script.Activate();
-        //    }
+        foreach(GameObject trigger in phases[0].activateConditions)
+        {
+            TriggeringObject script = trigger.GetComponent<TriggeringObject>();
+            if (script == null)
+            {
+                Debug.LogWarning("Using phase manager with GameObject without TriggeringObject");
+            }
+            else
+            {
+                script.Activate();
+            }
 
-        //}
+        }
         
     }
 
@@ -53,18 +53,18 @@ public class PhaseScript : MonoBehaviour
             //}
             ++phaseIndex;
             backwallRenderer.material.mainTexture = phases[phaseIndex].background;
-            //foreach (GameObject trigger in phases[phaseIndex].activateConditions)
-            //{
-            //    TriggeringObject script = trigger.GetComponent<TriggeringObject>();
-            //    if (script == null)
-            //    {
-            //        Debug.LogWarning("Using phase manager with GameObject without TriggeringObject");
-            //    }
-            //    else
-            //    {
-            //        script.Activate();
-            //    }
-            //}
+            foreach (GameObject trigger in phases[phaseIndex].activateConditions)
+            {
+                TriggeringObject script = trigger.GetComponent<TriggeringObject>();
+                if (script == null)
+                {
+                    Debug.LogWarning("Using phase manager with GameObject without TriggeringObject");
+                }
+                else
+                {
+                    script.Activate();
+                }
+            }
         }
     }
 
