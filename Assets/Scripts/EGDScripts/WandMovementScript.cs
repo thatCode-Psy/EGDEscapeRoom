@@ -6,19 +6,21 @@ public class WandMovementScript : TriggeringObject
 {
 
     public bool triggered;
-    bool started;
+    public bool started;
     GameObject wandObject;
     
     public int previousFrameCheckCount;
     Vector3[] previousWandPositions;
     int framesOnScreen;
+    ColliderScript exitCollider;
     // Start is called before the first frame update
     void Start()
     {
         triggered = false;
         started = false;
         wandObject = null;
-        
+        exitCollider = GetComponentInChildren<ColliderScript>();
+        exitCollider.Activate();
         previousWandPositions = new Vector3[previousFrameCheckCount];
         framesOnScreen = 0;
     }
@@ -26,7 +28,7 @@ public class WandMovementScript : TriggeringObject
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.FindGameObjectWithTag("EGDController") != null && !started && activated)
+        if (GameObject.FindGameObjectWithTag("EGDController") != null && !started && activated && exitCollider.IsTriggered())
         {
             started = true;
             wandObject = GameObject.FindGameObjectWithTag("Wand");

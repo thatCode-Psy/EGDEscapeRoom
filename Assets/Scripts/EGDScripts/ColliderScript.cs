@@ -6,13 +6,14 @@ public class ColliderScript : TriggeringObject
 {
     public string[] triggerTags;
     public bool triggered;
-    Collider col;
+    Collider[] cols;
     GameObject[] triggerObjects;
     bool started;
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<BoxCollider>();
+        
+        cols = GetComponents<BoxCollider>();
         triggered = false;
         started = false;
         triggerObjects = new GameObject[triggerTags.Length];
@@ -33,16 +34,24 @@ public class ColliderScript : TriggeringObject
             }
             if (started)
             {
-                Bounds bounds = col.bounds;
-                triggered = false;
-                foreach (GameObject triggerObject in triggerObjects)
+                foreach(BoxCollider col in cols)
                 {
-                    if (bounds.Contains(triggerObject.transform.position))
+                    Bounds bounds = col.bounds;
+                    triggered = false;
+                    foreach (GameObject triggerObject in triggerObjects)
                     {
-                        triggered = true;
+                        if (bounds.Contains(triggerObject.transform.position))
+                        {
+                            triggered = true;
+                            break;
+                        }
+                    }
+                    if (triggered)
+                    {
                         break;
                     }
                 }
+                
             }
         
         
