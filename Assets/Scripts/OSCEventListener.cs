@@ -76,6 +76,7 @@ public class OSCEventListener : MonoBehaviour
                 if (hat3Root)
                 {
                     hat3Root.localPosition = new Vector3(float.Parse(words[11 - s]), float.Parse(words[13 - s]), float.Parse(words[12 - s]));
+                    hat3Root.localEulerAngles = new Vector3(-float.Parse(words[24 - s]), -float.Parse(words[23 - s]), float.Parse(words[25 - s]));
                 }
                 if (hat4Root)
                 {
@@ -86,6 +87,7 @@ public class OSCEventListener : MonoBehaviour
                     wandRoot.localPosition = new Vector3(float.Parse(words[17 - s]), float.Parse(words[19 - s]), float.Parse(words[18 - s]));
                     wandRoot.localEulerAngles = new Vector3(-float.Parse(words[21 - s]), -float.Parse(words[20 - s]), float.Parse(words[22 - s]));
                 }
+
  
 
 
