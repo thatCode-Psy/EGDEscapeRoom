@@ -16,6 +16,8 @@ TagManager:
   - PhaseManager
   - Wand
   - Dot
+  - InnerRing
+  - OuterRing
   layers:
   - Default
   - TransparentFX
