@@ -22,33 +22,65 @@ public class RingScript : TriggeringObject
 
     float currentDefaultAngle;
 
+    bool setDefaultAngle;
+
     // Start is called before the first frame update
     void Start()
     {
         rotatingObject = GameObject.FindGameObjectWithTag(rotatingObjectTag);
         ringNum = 0;
         startTimer = 0f;
-        currentDefaultAngle = rotatingObject.transform.localEulerAngles.y;
+        setDefaultAngle = false;
+        if (rotatingObject != null)
+        {
+            float addingAngle = rotatingObject.transform.localEulerAngles.y;
+            if(addingAngle < 0f)
+            {
+                addingAngle += 360f;
+            }
+            currentDefaultAngle = addingAngle + currentAngle[ringNum];
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsTriggered())
+
+        if (rotatingObject == null)
         {
-            float angleCheck = rotatingObject.transform.localEulerAngles.y + currentDefaultAngle;
+            Start();
+        }
+        else if (!IsTriggered())
+        {
+            if (!setDefaultAngle)
+            {
+                currentDefaultAngle = currentAngle[ringNum] - rotatingObject.transform.localEulerAngles.y;
+                setDefaultAngle = true;
+            }
+            //Debug.Log(rotatingObject.transform.localEulerAngles.y);
+            float addingAngle = rotatingObject.transform.localEulerAngles.y;
+            if (addingAngle < 0f)
+            {
+                addingAngle += 360f;
+            }
+            float angleCheck = currentDefaultAngle + rotatingObject.transform.localEulerAngles.y;
             currentAngle[ringNum] = angleCheck;
             if (AngleWithinMargin(angleCheck))
             {
-                if(startTimer < 0.00001f)
+                if (startTimer < 0.00001f)
                 {
                     startTimer = Time.time;
                 }
-                else if(Time.time - startTimer >= transitionTimeForTolerance)
+                else if (Time.time - startTimer >= transitionTimeForTolerance)
                 {
                     startTimer = 0f;
                     ++ringNum;
-                    currentDefaultAngle = rotatingObject.transform.localEulerAngles.y;
+                    if (ringNum < rings.Length)
+                    {
+                        currentDefaultAngle = currentAngle[ringNum] - rotatingObject.transform.localEulerAngles.y;
+                    }
+
                 }
             }
         }
