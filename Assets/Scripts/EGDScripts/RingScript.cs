@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RingScript : TriggeringObject
 {
-    public string rotatingObjectTag;
+    public string rotatingObjectTag1;
+    public string rotatingObjectTag2;
 
     public GameObject[] rings;
 
@@ -14,7 +15,8 @@ public class RingScript : TriggeringObject
 
     public float transitionTimeForTolerance;
 
-    GameObject rotatingObject;
+    GameObject rotatingObject1;
+    GameObject rotatingObject2;
 
     int ringNum;
 
@@ -27,13 +29,14 @@ public class RingScript : TriggeringObject
     // Start is called before the first frame update
     void Start()
     {
-        rotatingObject = GameObject.FindGameObjectWithTag(rotatingObjectTag);
+        rotatingObject1 = GameObject.FindGameObjectWithTag(rotatingObjectTag1);
+        rotatingObject2 = GameObject.FindGameObjectWithTag(rotatingObjectTag2);
         ringNum = 0;
         startTimer = 0f;
         setDefaultAngle = false;
-        if (rotatingObject != null)
+        if (rotatingObject1 != null)
         {
-            float addingAngle = rotatingObject.transform.localEulerAngles.y;
+            float addingAngle = rotatingObject1.transform.localEulerAngles.y;
             if(addingAngle < 0f)
             {
                 addingAngle += 360f;
@@ -47,7 +50,7 @@ public class RingScript : TriggeringObject
     void Update()
     {
 
-        if (rotatingObject == null)
+        if (rotatingObject1 == null)
         {
             Start();
         }
@@ -55,16 +58,25 @@ public class RingScript : TriggeringObject
         {
             if (!setDefaultAngle)
             {
-                currentDefaultAngle = currentAngle[ringNum] - rotatingObject.transform.localEulerAngles.y;
+                currentDefaultAngle = currentAngle[ringNum] - rotatingObject1.transform.localEulerAngles.y;
                 setDefaultAngle = true;
             }
             //Debug.Log(rotatingObject.transform.localEulerAngles.y);
-            float addingAngle = rotatingObject.transform.localEulerAngles.y;
+            float addingAngle = rotatingObject1.transform.localEulerAngles.y;
             if (addingAngle < 0f)
             {
                 addingAngle += 360f;
             }
-            float angleCheck = currentDefaultAngle + rotatingObject.transform.localEulerAngles.y;
+
+            float angleCheck;
+            if(ringNum % 2 == 0)
+            {
+                angleCheck = currentDefaultAngle + rotatingObject1.transform.localEulerAngles.y;
+            }
+            else
+            {
+                angleCheck = currentDefaultAngle + rotatingObject2.transform.localEulerAngles.y;
+            }
             currentAngle[ringNum] = angleCheck;
             if (AngleWithinMargin(angleCheck))
             {
@@ -78,7 +90,14 @@ public class RingScript : TriggeringObject
                     ++ringNum;
                     if (ringNum < rings.Length)
                     {
-                        currentDefaultAngle = currentAngle[ringNum] - rotatingObject.transform.localEulerAngles.y;
+                        if(ringNum % 2 == 0)
+                        {
+                            currentDefaultAngle = currentAngle[ringNum] - rotatingObject1.transform.localEulerAngles.y;
+                        }
+                        else
+                        {
+                            currentDefaultAngle = currentAngle[ringNum] - rotatingObject2.transform.localEulerAngles.y;
+                        }
                     }
 
                 }
