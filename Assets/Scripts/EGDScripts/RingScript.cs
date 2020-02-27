@@ -102,6 +102,14 @@ public class RingScript : TriggeringObject
 
                 }
             }
+            else if(startTimer > 0.00001f)
+            {
+                startTimer = 0f;
+            }
+        }
+        else
+        {
+            Debug.Log("Solved");
         }
     }
 
