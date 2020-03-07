@@ -17,45 +17,56 @@ public class TangramSript : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject bigtri1;
-    public GameObject bigtri2;
-    public GameObject smalltri1;
-    public GameObject smalltri2;
-    public GameObject mediumtri;
-    public GameObject square;
-    public GameObject parallelogram;
+    public GameObject BigTri1;
+    public GameObject BigTri2;
+    public GameObject SmallTri1;
+    public GameObject SmallTri2;
+    public GameObject MediumTri;
+    public GameObject Square;
+    public GameObject Parallelogram;
 
     public int numMatches;
     public int numRequiredMatches;
     public float tolerance;
-    public string puzzleName;
+    public string puzzleNames;
     public bool puzzleSolved = false;
 
-    private List<DataPoint> dataPoints = new List<DataPoint>();
+    private List<List<DataPoint>> dataPoints = new List<List<DataPoint>>();
 
     void Start()
     {
-        bigtri1 = GameObject.Find("bigtri1");
-        bigtri2 = GameObject.Find("bigtri2");
-        smalltri1 = GameObject.Find("smalltri1");
-        smalltri2 = GameObject.Find("smalltri2");
-        mediumtri = GameObject.Find("mediumtri");
-        square = GameObject.Find("square");
-        parallelogram = GameObject.Find("parallelogram");
+        //BigTri1 = GameObject.Find("BigTri1");
+        //BigTri2 = GameObject.Find("BigTri2");
+        //SmallTri1 = GameObject.Find("SmallTri1");
+        //SmallTri2 = GameObject.Find("SmallTri2");
+        //MediumTri = GameObject.Find("MediumTri");
+        //Square = GameObject.Find("Square");
+        //Parallelogram = GameObject.Find("Parallelogram");
 
-        StreamReader reader = new StreamReader("Assets/Text/" + puzzleName + ".txt");
+        string[] puzzleList = puzzleNames.Split(',');
 
-        while (!reader.EndOfStream)
+        foreach (string puzzleName in puzzleList)
         {
-            string str = reader.ReadLine();
-            print(str);
-            string[] strs2 = str.Split(' ');
-            DataPoint p;
-            p.name1 = strs2[0];
-            p.name2 = strs2[1];
-            p.distance = float.Parse(strs2[2]);
-            dataPoints.Add(p);
+            StreamReader reader = new StreamReader("Assets/Text/" + puzzleName + ".txt");
+
+            List<DataPoint> data = new List<DataPoint>();
+
+            while (!reader.EndOfStream)
+            {
+                string str = reader.ReadLine();
+                //print(str);
+                string[] strs2 = str.Split(' ');
+                DataPoint p;
+                p.name1 = strs2[0];
+                p.name2 = strs2[1];
+                p.distance = float.Parse(strs2[2]);
+                data.Add(p);
+            }
+
+            dataPoints.Add(data);
         }
+
+
     }
 
     // Update is called once per frame
@@ -67,19 +78,26 @@ public class TangramSript : MonoBehaviour
         }
 
         numMatches = 0;
-
-        foreach (DataPoint dp in dataPoints)
+        foreach (List<DataPoint> pointSet in dataPoints)
         {
-            GameObject g1 = Get(dp.name1);
-            GameObject g2 = Get(dp.name2);
-            float dist = (g1.transform.position - g2.transform.position).magnitude;
-            float diffDist = Mathf.Abs(1.0f - (dist / dp.distance));
+            int partMatches = 0;
 
-            if (diffDist < tolerance)
+            foreach (DataPoint dp in pointSet)
             {
-                numMatches++;
+                GameObject g1 = Get(dp.name1);
+                GameObject g2 = Get(dp.name2);
+                float dist = (g1.transform.position - g2.transform.position).magnitude;
+                float diffDist = Mathf.Abs(1.0f - (dist / dp.distance));
+                if (diffDist < tolerance)
+                {
+                    partMatches++;
+                }
             }
+
+            numMatches = Mathf.Max(numMatches, partMatches);
         }
+
+
 
         if (numMatches >= numRequiredMatches)
         {
@@ -108,64 +126,64 @@ public class TangramSript : MonoBehaviour
     {
         if (num == 0)
         {
-            return bigtri1;
+            return BigTri1;
         }
         if (num == 1)
         {
-            return bigtri2;
+            return BigTri2;
         }
         if (num == 2)
         {
-            return smalltri1;
+            return SmallTri1;
         }
         if (num == 3)
         {
-            return smalltri2;
+            return SmallTri2;
         }
         if (num == 4)
         {
-            return mediumtri;
+            return MediumTri;
         }
         if (num == 5)
         {
-            return square;
+            return Square;
         }
         if (num == 6)
         {
-            return parallelogram;
+            return Parallelogram;
         }
         return null;
     }
 
     GameObject Get(string s)
     {
-        if (s.Equals("bigtri1"))
+        if (s.Equals("BigTri1"))
         {
-            return bigtri1;
+            return BigTri1;
         }
-        if (s.Equals("bigtri2"))
+        if (s.Equals("BigTri2"))
         {
-            return bigtri2;
+            return BigTri2;
         }
-        if (s.Equals("smalltri1"))
+        if (s.Equals("SmallTri1"))
         {
-            return smalltri1;
+            return SmallTri1;
         }
-        if (s.Equals("smalltri2"))
+        if (s.Equals("SmallTri2"))
         {
-            return smalltri2;
+            return SmallTri2;
         }
-        if (s.Equals("mediumtri"))
+        if (s.Equals("MediumTri"))
         {
-            return mediumtri;
+            return MediumTri;
         }
-        if (s.Equals("square"))
+        if (s.Equals("Square"))
         {
-            return square;
+            return Square;
         }
-        if (s.Equals("parallelogram"))
+        if (s.Equals("Parallelogram"))
         {
-            return parallelogram;
+            return Parallelogram;
         }
         return null;
     }
