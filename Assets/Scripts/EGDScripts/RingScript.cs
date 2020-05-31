@@ -52,6 +52,7 @@ public class RingScript : TriggeringObject
 
         if (rotatingObject1 == null)
         {
+            //Debug.Log("HELP");
             Start();
         }
         else if (!IsTriggered())
@@ -61,7 +62,7 @@ public class RingScript : TriggeringObject
                 currentDefaultAngle = currentAngle[ringNum] - rotatingObject1.transform.localEulerAngles.y;
                 setDefaultAngle = true;
             }
-            //Debug.Log(rotatingObject.transform.localEulerAngles.y);
+            //Debug.Log(rotatingObject1.transform.localEulerAngles.y);
             float addingAngle = rotatingObject1.transform.localEulerAngles.y;
             if (addingAngle < 0f)
             {

@@ -24,6 +24,8 @@ public class OSCEventListener : MonoBehaviour
     public Transform parallelogramRoot;
     public Transform squareRoot;
 
+    public Transform visorRoot;
+
 
     public Transform wandRoot;
     private static OSCEventListener osc;
@@ -119,6 +121,9 @@ public class OSCEventListener : MonoBehaviour
                 SetTransform(smallTri2Root, words, 11);
                 SetTransform(parallelogramRoot, words, 12);
                 SetTransform(squareRoot, words, 13);
+
+                SetTransform(visorRoot, words, 14);
+
 
                 ////convert Vicon coordinates to Unity coordinates
                 //if (hat1Root)

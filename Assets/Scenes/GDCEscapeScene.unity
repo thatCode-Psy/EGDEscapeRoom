@@ -1421,6 +1421,11 @@ PrefabInstance:
       propertyPath: rotatingObjectTag2
       value: Hat2Tag
       objectReference: {fileID: 0}
+    - target: {fileID: 8684492794716536000, guid: e8ede854c12984a4bb40d4b4924c6bd2,
+        type: 3}
+      propertyPath: transitionTimeForTolerance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6187165143826966054, guid: e8ede854c12984a4bb40d4b4924c6bd2,
         type: 3}
       propertyPath: m_LocalRotation.y

@@ -31,6 +31,8 @@ public class TangramSript : MonoBehaviour
     public string puzzleNames;
     public bool puzzleSolved = false;
 
+    public string sprite;
+
     private List<List<DataPoint>> dataPoints = new List<List<DataPoint>>();
 
     void Start()
@@ -102,6 +104,15 @@ public class TangramSript : MonoBehaviour
         if (numMatches >= numRequiredMatches)
         {
             puzzleSolved = true;
+        }
+
+
+
+        if (puzzleSolved)
+        {
+            GameObject o = GameObject.Find(sprite);
+            Vector3 p = o.transform.position;
+            o.transform.position = new Vector3(p.x, p.y, 12);
         }
     }
 
